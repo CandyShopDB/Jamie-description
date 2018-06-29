@@ -46,10 +46,10 @@ class App extends React.Component {
 
   getHome() {
     const endpoint = parseInt(this.state.houseId);
-    axios.get(`/api/house/${endpoint}`)
+    axios.get(`/api/house/${endpoint}/`)
       .then((response) => {
         console.log('myhouse', response.data);
-        this.setState({ home: response.data[0] });
+        this.setState({ home: response.data });
       })
       .catch((err) => {
         console.error('error at clientfetching', err);
@@ -60,7 +60,8 @@ class App extends React.Component {
     const endpoint = parseInt(this.state.houseId);
     axios.get(`/api/house/${endpoint}/host`)
       .then((response) => {
-        this.setState({ host: response.data[0] });
+        console.log(response.data)
+        this.setState({ host: response.data });
       })
       .catch((err) => {
         console.error('error at clientfetching', err);
@@ -99,10 +100,9 @@ class App extends React.Component {
   }
   getCancellation() {
     const endpoint = parseInt(this.state.houseId);
-    axios.get(`/api/house/${endpoint}/cancellation`)
+    axios.get(`/api/house/${endpoint}/cancellation/`)
       .then((response) => {
-        this.setState({ cancellation: response.data[0]});
-        console.log(response.data[0])
+        this.setState({ cancellation: response.data});
       })
       .catch((err) => {
         console.error('error at clientfetching', err);
