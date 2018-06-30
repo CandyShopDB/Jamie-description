@@ -1,20 +1,20 @@
 config:
-  target: "http://127.0.0.1:8081"
+  target: "http://127.0.0.1:8080"
   phases:
-    - duration: 30
-      arrivalRate: 10
-      name: "Warm up the application"
-    # - duration: 10
-    #   arrivalRate: 2
-    #   rampTo: 10
-    #   name: "jump to max load"
     # - duration: 20
     #   arrivalRate: 10
-    #   name: "keep at the max load"
-    # - duration: 10
-    #   arrivalRate: 5
-    #   rampTo: 1
-    #   name: "calm down"
+    #   name: "Warm up the application"
+    - duration: 60
+      arrivalRate: 1
+      rampTo: 10
+      name: "jump to max load"
+    - duration: 180
+      arrivalRate: 10
+      name: "keep at the max load"
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 1
+      name: "calm down"
   defaults:
     headers:
       x-my-service-auth: '987401838271002188298567'
@@ -22,7 +22,7 @@ scenarios:
     - flow:
         - loop:
             - get:
-                url: '/api/house/{{$randomNumber(1,15)}}/'
+                url: '/api/house/{{$randomNumber(9000000,1000000)}}/'
           count: 100
 
 

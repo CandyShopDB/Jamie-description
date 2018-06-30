@@ -58,7 +58,7 @@ class App extends React.Component {
 
   getHost() {
     const endpoint = parseInt(this.state.houseId);
-    axios.get(`/api/house/${endpoint}/host`)
+    axios.get(`/api/house/${endpoint}/host/`)
       .then((response) => {
         console.log(response.data)
         this.setState({ host: response.data });
