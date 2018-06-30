@@ -1,9 +1,9 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../server/index.js');
-const pg = require('pg');
+const { pg, Client} = require('pg');
 const request = require('request');
-
+const connectionString = 'postgresql://postgres@localhost/postgres';
 const should = chai.should();
 const expect = require('chai').expect;
 
@@ -24,6 +24,9 @@ describe('connect to pool', () => {
       database: 'jamie',
       port: '5432',
     });
+    client = new Client({connectionString});
+    await client.connect()
+    /*
     pool.connect((err, client, release) => {
       if (err) {
         return console.error('Error acquiring client', err.stack)
@@ -38,9 +41,10 @@ describe('connect to pool', () => {
     })
     pool.query('SELECT * FROM host where id = 1');
   });
-
+*/
   afterEach(() => {
     pool.end();
+    await client.end();
   });
 });
 
@@ -81,6 +85,9 @@ describe('Host', () => {
   });
   it('Should get last Host Info from the DB', (done) => {
     const queryString = 'SELECT * FROM host where id = 100000';
+    let result = await client.query(queryString);
+    expect(houseInfo.title).to.equal('voluptate');
+    /*
     pool.query(queryString, (err) => {
       if (err) { throw err; }
       request('http://127.0.0.1:8080/api/house/100000', (error, response, body) => {
@@ -91,6 +98,7 @@ describe('Host', () => {
       });
     });
   });
+  */
 });
 
 

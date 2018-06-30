@@ -7,7 +7,6 @@ jobs:
       - image: circleci/postgres:10.4-ram
         environment:
           POSTGRES_USER: jo-eunbyeol
-          POSTGRES_PASSWORD: ""
           POSTGRES_DB: jamie
     steps:
       - checkout
