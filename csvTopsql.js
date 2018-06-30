@@ -8,6 +8,13 @@ const pool = new pg.Pool({
   database: 'jamie',
   port: '5432'
 });
+pool.connect((err, data) => {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log(data);
+  }
+});
 //\copy house_amenities FROM ./house_amenities.csv DELIMITER ',' csv header
 let way = path.join(__dirname,'/house_amenities.csv');
 pool.query(`copy house_amenities FROM '${way}' DELIMITER ',' csv header`, (err, res) => {
