@@ -16,7 +16,7 @@ jobs:
       - run: npm install
       - run:
           name: psql
-          command: time psql -q -h localhost -p 5432 -U jo-eunbyeol -d jamie -c '\timing' -f schema.sql > /dev/null
+          command: psql -U jo-eunbyeol -d jamie-f schema.sql -h localhost
 
       - run: npm test
 
