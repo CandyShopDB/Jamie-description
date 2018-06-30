@@ -10,6 +10,7 @@
     "test": "mocha"
   },
   "dependencies": {
+    "are-we-there-yet": "^1.1.5",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "couchdb-api": "^1.2.2",
