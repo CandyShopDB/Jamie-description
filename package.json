@@ -4,10 +4,10 @@
   "description": "N-appbnb description listing",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
     "dev": "webpack -d --watch",
     "jest": "jest",
-    "start": "nodemon ./server/index.js"
+    "start": "nodemon ./server/index.js",
+    "test": "mocha"
   },
   "dependencies": {
     "axios": "^0.18.0",
