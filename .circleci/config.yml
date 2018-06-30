@@ -1,15 +1,10 @@
 version: 2
 
-machine:
-  post:
-    - ./daemon:
-          background: true
-
 jobs:
   build:
     docker:
       - image: circleci/node:10.5
-      - image: circleci/postgres:10-alpine-postgis
+      - image: circleci/postgres:10.4-alpine-postgis
         environment:
           POSTGRES_USER: jo-eunbyeol
           POSTGRES_DB: jamie
