@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const roomsRoutes = require('./Rooms');
 const path = require('path');
 const nr = require('newrelic');
 
@@ -26,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/:id', express.static(path.join(__dirname, '../public')));
 
-app.use('/rooms', roomsRoutes);
+//app.use('/rooms', roomsRoutes);
 
 app.get('/favicon.ico', (req, res) => res.status(204));
 
