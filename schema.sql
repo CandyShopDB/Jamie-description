@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS host;
 CREATE TABLE real_host (
    id serial,

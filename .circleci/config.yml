@@ -15,9 +15,14 @@ jobs:
           command: echo Hello, world.
       - run: npm install
       - run:
+          name: setup
+          command: sudo apt-get install -y postgresql-client-10.4
+      - run:
+          name: wait
+          command: ./wait-for-it.sh localhost:5432
+      - run:
           name: psql
-          command: psql -U jo-eunbyeol -d jamie-f schema.sql -h localhost
-
+          command: time psql -q -h localhost -p 5432 -U o-eunbyeol -d jamie -c '\timing' -f schema.sql > /dev/null
       - run: npm test
 
 
