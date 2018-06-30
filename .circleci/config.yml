@@ -15,11 +15,6 @@ jobs:
           name: Greeting
           command: echo Hello, world.
       - run: npm install
-      - run:
-          name: Set up DB
-
-          environment:
-            DATABASE_URL: "postgres://jo-eunbyeol@localhost:5432/jamie"
       - run: npm test
 
 
