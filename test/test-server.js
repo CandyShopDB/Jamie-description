@@ -17,7 +17,7 @@ const pool = new pg.Pool({
 chai.use(chaiHttp);
 
 describe('connect to pool', () => {
-  beforeEach((done) => {
+  beforeEach(async (done) => {
     const pool = new pg.Pool({
       user: 'jo-eunbyeol',
       host: 'localhost',
