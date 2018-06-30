@@ -6,18 +6,18 @@ jobs:
       - image: circleci/node:10.5
       - image: circleci/postgres:10.4-alpine-postgis
         environment:
+          POSTGRES_HOST: localhost
           POSTGRES_USER: jo-eunbyeol
           POSTGRES_DB: jamie
     steps:
       - checkout
       - run:
-          name: install dockerize
-          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            name: Set up DB
+            command: |
+              bundle exec rake db:create db:schema:load --trace
+              bundle exec rake db:migrate
           environment:
-            DOCKERIZE_VERSION: v0.3.0
-      - run:
-          name: Wait for db
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+            DATABASE_URL: "postgres://jo-eunbyeol@localhost:5432/jamie"
       - run:
           name: Greeting
           command: echo Hello, world.
