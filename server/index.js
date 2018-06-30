@@ -4,9 +4,9 @@ const path = require('path');
 const nr = require('newrelic');
 
 const request = require('superagent');
-const redis = require('redis');
+//const redis = require('redis');
 
-const client = redis.createClient();
+//const client = redis.createClient();
 
 const router = express.Router();
 
