@@ -12,10 +12,10 @@ jobs:
     steps:
       - checkout
       - run:
-            name: Set up DB
-            command: |
-              bundle exec rake db:create db:schema:load --trace
-              bundle exec rake db:migrate
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+            bundle exec rake db:migrate
           environment:
             DATABASE_URL: "postgres://jo-eunbyeol@localhost:5432/jamie"
       - run:
