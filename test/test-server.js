@@ -1,9 +1,9 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../server/index.js');
-const { pg, Client} = require('pg');
+const pg = require('pg');
 const request = require('request');
-const connectionString = 'postgresql://postgres@localhost/postgres';
+
 const should = chai.should();
 const expect = require('chai').expect;
 
@@ -17,34 +17,22 @@ const pool = new pg.Pool({
 chai.use(chaiHttp);
 
 describe('connect to pool', () => {
-  beforeEach(async (done) => {
+  beforeEach((done) => {
     const pool = new pg.Pool({
       user: 'jo-eunbyeol',
       host: 'localhost',
       database: 'jamie',
       port: '5432',
     });
-    client = new Client({connectionString});
-    await client.connect()
-    /*
     pool.connect((err, client, release) => {
       if (err) {
         return console.error('Error acquiring client', err.stack)
-       }
-      client.query('SELECT NOW()', (err, result) => {
-        release()
-        if (err) {
-          return console.error('Error executing query', err.stack)
-        }
-        console.log(result.rows)
-      })
-    })
+     }
     pool.query('SELECT * FROM host where id = 1');
   });
-*/
-  afterEach(async () => {
+  });
+  afterEach(() => {
     pool.end();
-    await client.end();
   });
 });
 
@@ -83,11 +71,8 @@ describe('Host', () => {
       });
     });
   });
-  it('Should get last Host Info from the DB', async(done) => {
+  it('Should get last Host Info from the DB', (done) => {
     const queryString = 'SELECT * FROM host where id = 100000';
-    let result = await client.query(queryString);
-    expect(houseInfo.title).to.equal('voluptate');
-    /*
     pool.query(queryString, (err) => {
       if (err) { throw err; }
       request('http://127.0.0.1:8080/api/house/100000', (error, response, body) => {
@@ -98,7 +83,6 @@ describe('Host', () => {
       });
     });
   });
-  */
 });
 
 
