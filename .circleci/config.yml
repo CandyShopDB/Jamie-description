@@ -6,7 +6,6 @@ jobs:
       - image: circleci/node:10.5
       - image: circleci/postgres:10.4-ram
         environment:
-          POSTGRES_HOST: localhost
           POSTGRES_USER: jo-eunbyeol
           POSTGRES_DB: jamie
     steps:
