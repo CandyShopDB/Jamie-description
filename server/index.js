@@ -20,7 +20,13 @@ const pool = new pg.Pool({
   database: 'jamie',
   port: '5432',
 });
-
+pool.connect((err, data) => {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log(data);
+  }
+});
 app.use(bodyParser.json());
 
 app.use('/:id', express.static(path.join(__dirname, '../public')));
