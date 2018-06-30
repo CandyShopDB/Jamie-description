@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:10.5
-      - image: circleci/mysql:5
+      - image: circleci/postgres:10-alpine-postgis
     steps:
       - checkout
       - run:
