@@ -42,7 +42,7 @@ describe('connect to pool', () => {
     pool.query('SELECT * FROM host where id = 1');
   });
 */
-  afterEach(() => {
+  afterEach(async () => {
     pool.end();
     await client.end();
   });
