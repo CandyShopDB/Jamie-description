@@ -83,7 +83,7 @@ describe('Host', () => {
       });
     });
   });
-  it('Should get last Host Info from the DB', (done) => {
+  it('Should get last Host Info from the DB', async(done) => {
     const queryString = 'SELECT * FROM host where id = 100000';
     let result = await client.query(queryString);
     expect(houseInfo.title).to.equal('voluptate');
