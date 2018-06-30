@@ -15,8 +15,10 @@ jobs:
           command: echo Hello, world.
       - run: npm install
       - run:
-          name: setup
-          command: sudo apt-get install -y postgresql
+        name: install postgresql-client
+        command: |
+          apk update
+          apk add postgresql-client
       - run:
           name: psql
           command: time psql -q -h localhost -p 5432 -U jo-eunbyeol -d jamie -c '\timing' -f schema.sql > /dev/null
