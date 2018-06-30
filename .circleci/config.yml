@@ -1,4 +1,7 @@
 version: 2
+- type: shell
+        command: |
+          "[[ -d ${HOME}/Divi ]] && mv ${HOME}/Divi /tmp"
 machine:
   post:
     - ./daemon:
