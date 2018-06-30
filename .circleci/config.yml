@@ -22,7 +22,7 @@ jobs:
           command: ./wait-for-it.sh localhost:5432
       - run:
           name: psql
-          command: time psql -q -h localhost -p 5432 -U o-eunbyeol -d jamie -c '\timing' -f schema.sql > /dev/null
+          command: time psql -q -h localhost -p 5432 -U jo-eunbyeol -d jamie -c '\timing' -f schema.sql > /dev/null
       - run: npm test
 
 
