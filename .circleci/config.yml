@@ -1,4 +1,9 @@
 version: 2
+machine:
+  post:
+    - ./daemon:
+          background: true
+
 jobs:
   build:
     docker:
