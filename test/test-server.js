@@ -17,34 +17,36 @@ const pool = new pg.Pool({
 chai.use(chaiHttp);
 
 describe('connect to pool', () => {
-  beforeEach((done) => {
+  beforeEach(() => {
     const pool = new pg.Pool({
       user: 'jo-eunbyeol',
       host: 'localhost',
       database: 'jamie',
       port: '5432',
     });
-    pool.connect((err, client, release) => {
+
+   pool.connect((err, client, release) => {
       if (err) {
         return console.error('Error acquiring client', err.stack)
+     } else {
+       console.log('connected')
      }
-    pool.query('SELECT * FROM host where id = 1');
-  });
-  });
-  afterEach(() => {
-    pool.end();
-  });
-});
+    });
 
-describe('House', () => {
+  });
+
+  afterEach(() => {
+  //  pool.end();
+  });
   it('should GET 200 status code when request for house Info', (done) => {
     chai.request(app)
       .get('/api/house/10000000')
       .end((err, res) => {
           res.should.have.status(200);
           done();
-        });
+      });
   });
+
   it('should DELETE house', (done) => {
     const queryString = 'DELETE FROM house where id = 90078';
     pool.query(queryString, (err) => {
@@ -55,10 +57,7 @@ describe('House', () => {
       });
     });
   });
-});
 
-
-describe('Host', () => {
   it('Should get first Host Info from the DB', (done) => {
     const queryString = 'SELECT * FROM host where id = 1';
     pool.query(queryString, (err) => {
@@ -71,6 +70,7 @@ describe('Host', () => {
       });
     });
   });
+
   it('Should get last Host Info from the DB', (done) => {
     const queryString = 'SELECT * FROM host where id = 100000';
     pool.query(queryString, (err) => {
@@ -83,6 +83,15 @@ describe('Host', () => {
       });
     });
   });
+
+
+
+
+
+
+ ////end
 });
+
+
 
 

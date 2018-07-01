@@ -20,6 +20,7 @@ const pool = new pg.Pool({
   database: 'jamie',
   port: '5432',
 });
+/*
 pool.connect((err, data) => {
   if(err) {
     console.log(err);
@@ -27,6 +28,7 @@ pool.connect((err, data) => {
     console.log(data);
   }
 });
+*/
 app.use(bodyParser.json());
 
 app.use('/:id', express.static(path.join(__dirname, '../public')));
@@ -60,7 +62,9 @@ app.get('/api/house/:houseId/', (req, res) => {
 app.get('/api/house/:houseId/host/', (req, res) => {
   const id = req.params.houseId;
   pool.query('SELECT * FROM host where id = 1', (err, queryRes) => {
+    console.log(queryRes)
     res.status(200).send(queryRes.rows[0]);
+
   });
 });
 
