@@ -64,7 +64,7 @@ describe('connect to pool', () => {
   });
 
   it('Should get last Host Info from the DB', (done) => {
-    const queryString = 'SELECT * FROM host where id = 100000';
+    const queryString = 'SELECT * FROM smallHost where id = 100000';
     pool.query(queryString, (err) => {
       if (err) { throw err; }
       request('http://127.0.0.1:8080/api/house/100000', (error, response, body) => {
