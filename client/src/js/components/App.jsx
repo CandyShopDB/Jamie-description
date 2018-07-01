@@ -48,7 +48,6 @@ class App extends React.Component {
     const endpoint = parseInt(this.state.houseId);
     axios.get(`/api/house/${endpoint}/`)
       .then((response) => {
-        console.log('myhouse', response.data);
         this.setState({ home: response.data });
       })
       .catch((err) => {
@@ -60,7 +59,6 @@ class App extends React.Component {
     const endpoint = parseInt(this.state.houseId);
     axios.get(`/api/house/${endpoint}/host/`)
       .then((response) => {
-        console.log('host!!!!!!!!!',response.data)
         this.setState({ host: response.data });
       })
       .catch((err) => {
