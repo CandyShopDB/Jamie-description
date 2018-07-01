@@ -14,7 +14,14 @@ const pool = new pg.Pool({
   database: 'jamie',
   port: '5432',
 });
-pool.query('DROP TABLE IF EXISTS smallHouse');
+pool.query('CREATE TABLE smallHost (id serial,name VARCHAR(30),pictureUrl VARCHAR(100),primary key(id));', (err, res) => {
+  console.log(err, res);
+//  pool.end();
+});
+pool.query('DROP TABLE IF EXISTS smallHouse', (err, res) => {
+  console.log(err, res);
+//  pool.end();
+});
 pool.query('CREATE TABLE smallHouse (id serial,property_type VARCHAR(500),title VARCHAR(500),location VARCHAR(500),num_guests smallint,num_beds smallint,num_views smallint,num_baths smallint,num_rooms smallint,studio  Boolean,score smallint,description_title VARCHAR(500),days_from_last_update INT,minimumstay smallint,checkin_start_time smallint,checkout_time smallint,description_comment VARCHAR(5000),host_id INT,highlights_id INT,cancellation_id INT,house_rules_id INT,amenities_id INT,FOREIGN KEY (host_id) REFERENCES host(id),FOREIGN KEY (house_rules_id) REFERENCES house_rules(id),FOREIGN KEY (highlights_id) REFERENCES highlights(ID),FOREIGN KEY (cancellation_id) REFERENCES cancellation(id),FOREIGN KEY (amenities_id) REFERENCES amenities(id),primary key(id))', (err, res) => {
   console.log(err, res);
 //  pool.end();
@@ -43,7 +50,7 @@ describe('connect to pool', () => {
   });
 
   afterEach(() => {
-  // pool.end();
+   pool.end();
   */
   });
   ///// GET
