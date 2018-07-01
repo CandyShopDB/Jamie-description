@@ -90,7 +90,7 @@ app.get('/api/house/:houseId/', cache, (req, res) => {
 
 app.get('/api/house/:houseId/host/', (req, res) => {
   const id = req.params.houseId;
-  pool.query('SELECT * FROM smallHost where id = 1', (err, queryRes) => {
+  pool.query('SELECT * FROM host where id = 1', (err, queryRes) => {
     res.status(200).send(queryRes.rows[0]);
   });
 });
