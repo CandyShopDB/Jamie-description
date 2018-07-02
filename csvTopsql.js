@@ -16,6 +16,7 @@ pool.connect((err, data) => {
   }
 });
 //\copy house_amenities FROM ./house_amenities.csv DELIMITER ',' csv header
+/*
 let way = path.join(__dirname,'/house_amenities.csv');
 pool.query(`copy house_amenities FROM '${way}' DELIMITER ',' csv header`, (err, res) => {
   console.log(err, res);
@@ -23,16 +24,17 @@ pool.query(`copy house_amenities FROM '${way}' DELIMITER ',' csv header`, (err, 
 });
 
 /*
+*/
 //\copy amenities totalHouse FROM './totalHouse.csv' DELIMITER ',' csv header;
 let way = path.join(__dirname,'/totalHouse.csv');
 pool.query(`copy house FROM '${way}' DELIMITER ',' csv header`, (err, res) => {
   console.log(err, res);
   pool.end();
 });
-*/
+
 
 pool.query(`select * from house where id=1`, (err, res) => {
- console.log(res.rows);
+
   pool.end();
 });
 //pool.query('INSERT INTO house (id,property_type,title,location,num_guests,num_beds,num_views,num_baths,num_rooms,studio,score,description_title,days_from_last_update,minimumstay,checkin_start_time,checkout_time,description_comment,host_id,highlights_id,cancellation_id,house_rules_id,amenities_id) VALUES (10,reiciendis,molestiae,tempore,5,5,47,2,3,false,5,pariatur,12,1,10,11,'Repellat dolore earum beatae non et porro molestias corporis veritatis.', 13763,36763,536,7614,3)'));
