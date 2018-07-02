@@ -14,7 +14,7 @@ const pool = new pg.Pool({
   database: 'jamie',
   port: '5432',
 });
-pool.query('CREATE TABLE host (id serial,name VARCHAR(30),pictureUrl VARCHAR(100),primary key(id));', (err, res) => {
+pool.query('CREATE TABLE host (id serial, name VARCHAR(30), pictureUrl VARCHAR(100), primary key(id))', (err, res) => {
   console.log(err, res);
 //  pool.end();
 });
