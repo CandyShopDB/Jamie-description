@@ -64,7 +64,6 @@ function cache(req, res, next) {
   client.get(id, function (err, data) {
       if (err) throw err;
       if (data !== null) {
-        console.log('!!!!',data)
           res.send(data);
       } else {
           next();
@@ -94,11 +93,11 @@ app.get('/api/house/:houseId/', cache, (req, res) => {
 
 app.get('/api/house/:houseId/host/', (req, res) => {
   const id = req.params.houseId;
-  pool.query('SELECT * FROM host where id = 1', (err, queryRes) => {
+  pool.query(`SELECT * FROM host where id = ${7}`, (err, queryRes) => {
     if (err) {
       res.sendStatus(500);
     } else {
-      res.status(200).send(queryRes.rows[0]);
+    res.status(200).send(queryRes.rows[0]);
     }
   });
 });

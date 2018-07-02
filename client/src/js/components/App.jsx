@@ -69,7 +69,8 @@ class App extends React.Component {
     const endpoint = parseInt(this.state.houseId);
     axios.get(`/api/house/${endpoint}/highlights`)
       .then((response) => {
-        this.setState({ highlights: this.state.highlights.concat(response.data) });
+        console.log(response)
+        this.setState({ highlights: this.state.highlights.concat(response.data.rows) });
       })
       .catch((err) => {
         console.error('error at clientfetching', err);
@@ -112,7 +113,6 @@ class App extends React.Component {
     axios.get(`/rooms${endpoint}`)
       .then((response) => {
         const homeData = response.data[0];
-        console.log(homeData);
         this.setState({ oldHome: homeData });
       })
       .catch((err) => {
