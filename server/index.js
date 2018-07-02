@@ -83,15 +83,23 @@ app.get('/api/house/:houseId/', (req, res) => {
 app.get('/api/house/:houseId/', cache, (req, res) => {
   const id = req.params.houseId;
   pool.query(`select id,property_type,title,location,num_guests,num_beds,num_views,num_baths,num_rooms,studio,score,description_title,days_from_last_update,minimumstay,checkin_start_time,checkout_time,description_comment,host_id,highlights_id,cancellation_id,house_rules_id,amenities_id from house where id = ${id}`, (err, queryRes) => {
-    res.status(200).send(queryRes.rows[0]);
-    client.setex(id, 36000, JSON.stringify(queryRes.rows[0]));
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(queryRes.rows[0]);
+      client.setex(id, 36000, JSON.stringify(queryRes.rows[0]));
+    }
   });
 });
 
 app.get('/api/house/:houseId/host/', (req, res) => {
   const id = req.params.houseId;
   pool.query('SELECT * FROM host where id = 1', (err, queryRes) => {
-    res.status(200).send(queryRes.rows[0]);
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.status(200).send(queryRes.rows[0]);
+    }
   });
 });
 
