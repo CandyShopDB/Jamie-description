@@ -58,8 +58,9 @@ describe('connect to pool', () => {
     chai.request(app)
       .get('/api/house/10000000')
       .end((err, res) => {
-          res.should.have.status(200);
-          done();
+        console.log('200 test', err, res);
+        res.should.have.status(200);
+        done();
       });
   });
 
