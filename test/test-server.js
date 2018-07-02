@@ -26,7 +26,10 @@ pool.query('CREATE TABLE house (id serial PRIMARY KEY, property_type VARCHAR(500
   console.log('create table house', res);
 //  pool.end();
 });
-
+pool.query('insert into house values(10000000,"molestias","modi","molestiae",6,9,44,2,4,true,3,"clean house",294,38607,89290,6816,"hohhjkj,5,12,6,19,2', (err, res) => {
+  console.log('create table house', res);
+//  pool.end();
+});
 
 chai.use(chaiHttp);
 
